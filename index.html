@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="euc-kr">
+<title>Untitled Document</title>
+<style>
+body {
+  font-family: serif;
+  background-color: #fff; /* 배경을 흰색으로 설정합니다 */
+  color: #000; /* 텍스트를 검은색으로 설정합니다 */
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px; /* 버튼 사이의 간격을 조정합니다 */
+}
+
+.copy-button {
+  display: inline-block;
+  padding: 3px 8px; /* 버튼 크기를 조정합니다 */
+  background-color: #D9D9D9; /* 계좌 복사 버튼의 배경을 연한 회색으로 변경합니다 */
+  color: #000;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px; /* 폰트 크기를 조정합니다 */
+  margin-right: 10px; /* 계좌 복사 버튼 오른쪽에 여백을 추가합니다 */
+}
+
+.account-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.account-info + .button-container {
+  margin-top: 15px; /* 두 버튼 사이의 간격을 조정합니다 */
+}
+
+.separator {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-top: 1px solid #000;
+}
+</style>
+</head>
+
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+<div class="separator"></div>
+<div class="account-info">
+  <p id="phone1">전화번호 12345676</p>
+</div>
+
+<div class="account-info">
+  <p id="num1">계좌번호 농협 12345567</p>
+</div>
+
+<div class="button-container">
+  <button onclick="copyToClipboard('#num1')" class="copy-button">계좌 복사</button>
+</div>
+    
+<script>
+function copyToClipboard(element) {
+  var $temp = $("<input>");
+  $(element).after($temp); // 버튼의 바로 아래에 입력 요소를 추가합니다.
+  $temp.val($(element).text()).select();
+  document.execCommand("copy");
+  $temp.remove();
+  
+  var $button = $(element).siblings('.copy-button');
+  $button.show();
+  setTimeout(function() {
+    $button.hide();
+  }, 2000);
+}
+</script>
+</body>
+</html>v
